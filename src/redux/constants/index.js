@@ -1,8 +1,11 @@
+const namespace = "USERS";
 
 const USERS = {
-  LOAD: 'USERS_LOAD',
-  LOAD_SUCCESS: 'USERS_LOAD_SUCCESS',
-  LOAD_FAIL: 'USERS_LOAD_FAIL',
+  LOAD: `${namespace}_LOAD`,
+  LOAD_SUCCESS: `${namespace}_LOAD_SUCCESS`,
+  LOAD_FAIL: `${namespace}_LOAD_FAIL`,
+  ADD_USER: `${namespace}_ADD_USER`,
+  SET_USER: `${namespace}_SET_USER`
 };
 
 export { USERS };

@@ -14,4 +14,14 @@ const setError = error => ({
   payload: error
 });
 
-export { loadUsers, setError, setUsers };
+const addUser = id => ({
+  type: USERS.ADD_USER,
+  id
+});
+
+const setUser = user => ({
+  type: USERS.SET_USER,
+  user
+})
+
+export { loadUsers, setError, setUsers, addUser, setUser };

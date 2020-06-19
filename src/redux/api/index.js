@@ -42,3 +42,18 @@ export const get = (url, query, token) => {
 
   return req.then(handleSuccess).catch(handleError);
 };
+
+export const put = (url, query, token) => {
+    // todo payload
+    const req = axios
+        .put(
+            encodeURI(url + (query || '')),
+            token && {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
+        );
+
+    return req.then(handleSuccess).catch(handleError);
+};

@@ -6,6 +6,10 @@ const usersReducer = (state = { data: [] }, action) => {
       return action.payload.data;
     case USERS.LOAD_FAIL:
       return action.payload;
+    case USERS.SET_USER: {
+      return state
+      // todo: update list
+    }
     default:
       return state;
   }
