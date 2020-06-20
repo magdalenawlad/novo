@@ -9,7 +9,7 @@ import { HashRouter as Router } from "react-router-dom";
 import { Route } from "react-router";
 import { User, UserList } from "./container"
 import theme from "../theme";
-import { TopBar } from "./_shared";
+import { TopBar, Alerts } from "./_shared";
 import { loadUsers } from "../redux/actions/usersActions";
 
 const useStyles = makeStyles({
@@ -43,6 +43,7 @@ const App = () => {
     return (
         <MuiThemeProvider theme={theme}>
             <div className={classes.container}>
+                <Alerts />
                 <TopBar />
                 <Box flex={1}>
                     <Router>
@@ -53,7 +54,7 @@ const App = () => {
                 </Box>
                 <footer className={classes.footer}>
                     <CopyrightIcon color="primary" className={classes.footerIcon} />
-                    <Typography color="primary" variant="overline" textTransform="uppercase">Users App</Typography>
+                    <Typography color="primary" variant="overline">Users App</Typography>
                 </footer>
             </div>
         </MuiThemeProvider>

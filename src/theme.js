@@ -1,6 +1,13 @@
 import { createMuiTheme } from "@material-ui/core";
 
+const success = "#087f23";
+const error = "#ba000d";
+
 const theme = createMuiTheme({
+    colors: {
+        success,
+        error
+    },
     typography: {
         fontFamily: "Roboto",
         h6: {
@@ -11,6 +18,7 @@ const theme = createMuiTheme({
         },
         overline: {
             fontFamily: "Roboto Medium",
+            textTransform: "uppercase",
             fontSize: 12,
             letterSpacing: 2
         }

@@ -1,11 +1,14 @@
-const namespace = "USERS";
-
 const USERS = {
-    LOAD: `${namespace}_LOAD`,
-    LOAD_SUCCESS: `${namespace}_LOAD_SUCCESS`,
-    LOAD_FAIL: `${namespace}_LOAD_FAIL`,
-    ADD_USER: `${namespace}_ADD_USER`,
-    SET_USER: `${namespace}_SET_USER`
+    LOAD: "USERS_LOAD",
+    LOAD_SUCCESS: "USERS_LOAD_SUCCESS",
+    LOAD_FAIL: "USERS_LOAD_FAIL",
+    ADD_USER: "USERS_ADD_USER",
+    SET_USER: "USERS_SET_USER"
 };
 
-export { USERS };
+const ALERT = {
+    CREATE_ALERT: "ALERT_CREATE_ALERT",
+    CLOSE_ALERT: "ALERT_CLOSE_ALERT"
+}
+
+export { USERS, ALERT };

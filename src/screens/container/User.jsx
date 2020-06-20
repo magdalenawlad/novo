@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useCallback, useMemo, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Layout from "../_shared/Layout";
@@ -13,13 +13,18 @@ import {
     isShallowEqual
 } from "./helpers";
 import { addUser } from "../../redux/actions/usersActions";
+import { createAlert } from "../../redux/actions/alertActions";
+
+const SUBMISSION_PENDING_MESSAGE = "Thank you, your submission is pending and will appear after validation.";
 
 const User = ({ history, match: { params: { userId }} }) => {
     const dispatch = useDispatch();
+    const goToUserList = useCallback(() => history.push(""), [history])
     const handleSubmit = useCallback(() => {
-        // todo: redirect on success
+        goToUserList();
         dispatch(addUser(userId));
-    }, [dispatch, userId]);
+        dispatch(createAlert({ text: SUBMISSION_PENDING_MESSAGE }))
+    }, [goToUserList, dispatch, userId]);
     const [data, setData] = useState(initialData);
     const users = useSelector(state => state.users.data);
     const goBack = useCallback(() => history.goBack(), [history]);
