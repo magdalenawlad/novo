@@ -73,7 +73,11 @@ const UserList = ({ history }) => {
                                             </Typography>
                                         </Fragment>
                                     }
-                                    secondary={email}
+                                    secondary={
+                                        <Typography variant="subtitle2" color="textSecondary">
+                                            {email}
+                                        </Typography>
+                                    }
                                 />
                                 <ListItemAvatar>
                                     <Avatar

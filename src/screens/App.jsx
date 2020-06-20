@@ -12,12 +12,12 @@ import theme from "../theme";
 import { TopBar } from "./_shared";
 import { loadUsers } from "../redux/actions/usersActions";
 
-const useStyles = makeStyles(() =>({
+const useStyles = makeStyles({
     container: {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        background: "#EEF0F1"
+        background: theme.palette.background.default
     },
     footer: {
         height: 40,
@@ -25,16 +25,13 @@ const useStyles = makeStyles(() =>({
         alignItems: "center",
         justifyContent: "center",
         background: "#E1E4E5",
-        borderTop: "2px solid #C1C6C8",
-        fontSize: 12,
-        textTransform: "uppercase",
-        fontStretch: "expanded"
+        borderTop: "2px solid #C1C6C8"
     },
     footerIcon: {
-        fontSize: 12,
-        padding: "0 0.5em"
+        fontSize: 10,
+        paddingRight: 10
     }
-}));
+});
 
 const App = () => {
     const classes = useStyles();
@@ -55,8 +52,8 @@ const App = () => {
                     </Router>
                 </Box>
                 <footer className={classes.footer}>
-                    <CopyrightIcon color="primary" className={classes.footerIcon}/>
-                    <Typography color="primary" variant="subtitle2">Users App</Typography>
+                    <CopyrightIcon color="primary" className={classes.footerIcon} />
+                    <Typography color="primary" variant="overline" textTransform="uppercase">Users App</Typography>
                 </footer>
             </div>
         </MuiThemeProvider>

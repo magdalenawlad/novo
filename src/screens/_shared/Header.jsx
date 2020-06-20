@@ -22,7 +22,7 @@ const Header = ({ history, allowReturn, label, actions }) => {
                     </IconButton>
                 </Box>
             )}
-            <Box px={1} flex={1} display="flex" alignItems="center"><Typography variant='h5'>{label}</Typography></Box>
+            <Box px={1} flex={1} display="flex" alignItems="center"><Typography variant="h6">{label}</Typography></Box>
             {actions && !!actions.length && (
                 <Box px={1} display="flex" alignItems="center">
                     {actions.map((action) => <Button key={action.name} {...action} />)}
