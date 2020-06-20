@@ -27,7 +27,11 @@ const useStyles = makeStyles(({
         ...(isMobile && ({
             display: "flex",
             flexDirection: "column"
-        }))
+        })),
+        "@media (max-width: 500px)": {
+            display: "flex",
+            flexDirection: "column"
+        }
     },
     multiline: {
         marginTop: 0,

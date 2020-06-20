@@ -34,6 +34,8 @@ const theme = createMuiTheme({
         },
         MuiButton: {
             root: {
+                fontFamily: "Roboto Medium",
+                letterSpacing: 1.25,
                 "& svg":{
                     width: "0.6em"
                 },
@@ -44,6 +46,12 @@ const theme = createMuiTheme({
             },
             startIcon: {
                 marginRight: 4
+            }
+        },
+        MuiPaper: {
+            elevation1: {
+                borderRadius: 0,
+                boxShadow: "0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)"
             }
         }
     }
