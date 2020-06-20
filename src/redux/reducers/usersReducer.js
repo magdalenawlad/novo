@@ -1,18 +1,18 @@
-import { USERS } from '../constants';
+import { USERS } from "../constants";
 
 const usersReducer = (state = { data: [] }, action) => {
-  switch (action.type) {
+    switch (action.type) {
     case USERS.LOAD_SUCCESS:
-      return action.payload.data;
+        return action.payload.data;
     case USERS.LOAD_FAIL:
-      return action.payload;
+        return action.payload;
     case USERS.SET_USER: {
-      return state
-      // todo: update list
+        return state
+        // todo: update list
     }
     default:
-      return state;
-  }
+        return state;
+    }
 };
 
 export default usersReducer;

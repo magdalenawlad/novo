@@ -6,7 +6,7 @@ const propTypes = {
     action: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     startIcon: PropTypes.element,
-    variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+    variant: PropTypes.oneOf(["contained", "outlined", "text"]),
     disabled: PropTypes.bool
 }
 

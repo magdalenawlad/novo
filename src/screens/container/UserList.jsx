@@ -1,17 +1,17 @@
 import React, { Fragment, useCallback, useMemo } from "react";
 import { isMobile } from "react-device-detect";
-import { makeStyles } from '@material-ui/core/styles';
-import Layout from "../_shared/Layout";
-import Header from "../_shared/Header";
+import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Typography from "@material-ui/core/Typography";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
 import { Box } from "@material-ui/core";
 import { useSelector } from "react-redux";
+import Layout from "../_shared/Layout";
+import Header from "../_shared/Header";
 
 const useStyles = makeStyles(({
     avatar: {
@@ -31,21 +31,21 @@ const useStyles = makeStyles(({
     },
     multiline: {
         marginTop: 0,
-        marginBottom: 0,
+        marginBottom: 0
     }
 }));
 
 const UserList = ({ history }) => {
     const classes = useStyles();
     const users = useSelector(state => state.users.data);
-    const addNewUserHandler = useCallback(() => history.push('/user'), []);
+    const addNewUserHandler = useCallback(() => history.push("/user"), [history]);
     const actions = useMemo(() => [{
         label: "Add user",
         action: addNewUserHandler,
         name: "test",
         startIcon: <AddIcon />
     }], [addNewUserHandler])
-    const goToUserPreview = useCallback((id) => history.push(`/user/${id}`), [])
+    const goToUserPreview = useCallback((id) => history.push(`/user/${id}`), [history])
 
     return (
         <Layout maxWidth="md">

@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
 const handleError = error => (
-  error.response
-    ? {
-      error: {
-        error: error.response.status,
-        message: error.response.data,
-      },
-    }
-    : { error }
+    error.response
+        ? {
+            error: {
+                error: error.response.status,
+                message: error.response.data
+            }
+        }
+        : { error }
 );
 
 const handleSuccess = response => ({
-  data: response.data,
-  headers: response.headers,
+    data: response.data,
+    headers: response.headers
 });
 
 /**
@@ -30,29 +30,29 @@ const handleSuccess = response => ({
  * get("http://management-api", "?search=bonus", "asd32eD5F");
  */
 export const get = (url, query, token) => {
-  const req = axios
-    .get(
-      encodeURI(url + (query || '')),
-      token && {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+    const req = axios
+        .get(
+            encodeURI(url + (query || "")),
+            token && {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
 
-  return req.then(handleSuccess).catch(handleError);
+    return req.then(handleSuccess).catch(handleError);
 };
 
 export const put = (url, query, token) => {
     // todo payload
     const req = axios
         .put(
-            encodeURI(url + (query || '')),
+            encodeURI(url + (query || "")),
             token && {
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            },
+                    Authorization: `Bearer ${token}`
+                }
+            }
         );
 
     return req.then(handleSuccess).catch(handleError);

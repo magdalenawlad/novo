@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { Box, Typography } from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import Layout from "../_shared/Layout";
 import Header from "../_shared/Header";
 import { Button } from "../_shared";
@@ -12,7 +12,7 @@ import {
     validate,
     isShallowEqual
 } from "./helpers";
-import {addUser} from "../../redux/actions/usersActions";
+import { addUser } from "../../redux/actions/usersActions";
 
 const User = ({ history, match: { params: { userId }} }) => {
     const dispatch = useDispatch();
@@ -31,12 +31,12 @@ const User = ({ history, match: { params: { userId }} }) => {
         setErrors({
             ...errors,
             [name]: error
-        })
+        });
         setData({
             ...data,
             [name]: value
-        })
-    }, [data]);
+        });
+    }, [errors, data]);
     const currentUserData = useMemo(() => {
         return userId ? users.find(({ id }) => Number(id) === Number(userId)) : {}
     }, [userId, users]);
@@ -50,7 +50,7 @@ const User = ({ history, match: { params: { userId }} }) => {
     useEffect(() => {
         const user = userId && users.length ? currentUserData: initialData;
         setData(user);
-    }, [userId, users, currentUserData])
+    }, [userId, users, currentUserData]);
 
     return (
         <Layout maxWidth="xs">
@@ -61,7 +61,7 @@ const User = ({ history, match: { params: { userId }} }) => {
                         variant="subtitle2" color="textSecondary">{`ID: ${userId}`}
                     </Typography>}
                     {Object.keys(initialData).map((name) => {
-                        const isTouched = errors.hasOwnProperty(name);
+                        const isTouched = Object.prototype.hasOwnProperty.call(errors, name);
                         const errorText = validate(name)(data[name])
                         return (
                             <TextField

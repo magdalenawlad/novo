@@ -1,7 +1,7 @@
-import React, {useCallback} from 'react';
-import { withRouter } from 'react-router'
+import React, {useCallback} from "react";
+import { withRouter } from "react-router"
 import PropTypes from "prop-types";
-import { Button } from './index';
+import { Button } from "./index";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import IconButton from "@material-ui/core/IconButton"
