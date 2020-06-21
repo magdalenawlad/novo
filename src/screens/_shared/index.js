@@ -1,13 +1,13 @@
 import Alerts from "./Alerts";
 import Header from "./Header";
 import TopBar from "./TopBar";
-import Layout from "./Layout";
+import MainContainer from "./MainContainer";
 import Button from "./Button";
 
 export {
     Alerts,
     TopBar,
     Header,
-    Layout,
+    MainContainer,
     Button
 };

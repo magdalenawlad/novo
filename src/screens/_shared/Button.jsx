@@ -15,13 +15,14 @@ const defaultProps = {
     action: () => {}
 }
 
-const Button = ({ action, label, startIcon, disabled, variant }) => (
+const Button = ({ action, label, startIcon, disabled, variant, ...rest }) => (
     <MaterialButton
         variant={variant}
         color="primary"
         startIcon={startIcon}
         onClick={action}
         disabled={disabled}
+        {...rest}
     >
         {label}
     </MaterialButton>

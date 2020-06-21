@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import Layout from "../_shared/Layout";
+import MainContainer from "../_shared/MainContainer";
 import Header from "../_shared/Header";
 import { Button } from "../_shared";
 import {
@@ -66,7 +66,7 @@ const User = ({ history, match: { params: { userId }} }) => {
     }, [userId, users, currentUserData]);
 
     return (
-        <Layout maxWidth="xs">
+        <MainContainer maxWidth="xs">
             <Box maxWidth={500}>
                 <Header allowReturn label={header} />
                 <Box pl={3} my={2}>
@@ -99,7 +99,7 @@ const User = ({ history, match: { params: { userId }} }) => {
                     <Button disabled={!isFormValid} action={handleSubmit} label="Submit to review" />
                 </Box>
             </Box>
-        </Layout>
+        </MainContainer>
     );
 }
 

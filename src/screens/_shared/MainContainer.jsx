@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 
-const Layout = ({ maxWidth, children }) => (
+const MainContainer = ({ maxWidth, children }) => (
     <Container maxWidth={maxWidth}>
         <Box my={4} p={3} clone>
             <Paper>
@@ -22,5 +22,5 @@ const propTypes = {
     maxWidth: oneOf(["lg", "md", "sm", "xl", "xs", false]).isRequired
 }
 
-Layout.propTypes = propTypes;
-export default Layout;
+MainContainer.propTypes = propTypes;
+export default MainContainer;

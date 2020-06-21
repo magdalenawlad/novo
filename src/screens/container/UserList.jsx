@@ -10,7 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
 import { Box } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import Layout from "../_shared/Layout";
+import MainContainer from "../_shared/MainContainer";
 import Header from "../_shared/Header";
 
 const useStyles = makeStyles(({
@@ -52,7 +52,7 @@ const UserList = ({ history }) => {
     const goToUserPreview = useCallback((id) => history.push(`/user/${id}`), [history])
 
     return (
-        <Layout maxWidth="md">
+        <MainContainer maxWidth="md">
             <Header label="Users" actions={actions}/>
             <Box my={2} >
                 <List>
@@ -96,7 +96,7 @@ const UserList = ({ history }) => {
                     ))}
                 </List>
             </Box>
-        </Layout>
+        </MainContainer>
     )
 }
 
