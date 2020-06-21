@@ -1,33 +1,45 @@
-import { call, fork, put, take } from "redux-saga/effects";
+import { call, fork, put, take, takeEvery } from "redux-saga/effects";
 
 import { USERS } from "../constants";
-import { setUsers, setError, setUser } from "../actions/usersActions"
-import { get, put as callPut } from "../api"
+import { setUsers, setError, setAddedUser, setUpdatedUser } from "../actions/usersActions";
+import * as Api from "../api"
 
-export function* handleUsersLoad(payload) {
+export function* handleUsersLoad() {
     try {
-        const users = yield call(get, "https://reqres.in/api/users");
-        yield put(setUsers(users))
+        const users = yield call(Api.get, "https://reqres.in/api/users");
+        yield put(setUsers(users));
     } catch (error) {
         yield put(setError(error.toString()));
     }
 }
 
-export function* handleUserPost() {
+export function* handleUserPost({ user }) {
     try {
-        const user = yield call(callPut, "https://reqres.in/api/users/3");
-        yield put(setUser(user))
+        const response = yield call(Api.post, "https://reqres.in/api/users", { ...user });
+        yield put(setAddedUser(response));
     } catch (error) {
         yield put(setError(error.toString()));
     }
 }
 
-export function* usersLoad(action) {
+export function* handleUserPut({ userId, user }) {
+    try {
+        const response = yield call(Api.put, `https://reqres.in/api/users/${userId}`, { ...user });
+        yield put(setUpdatedUser(response));
+    } catch (error) {
+        yield put(setError(error.toString()));
+    }
+}
+
+export function* usersLoad() {
     const payload = yield take(USERS.LOAD);
-    yield fork(handleUsersLoad, payload)
+    yield fork(handleUsersLoad, payload);
 }
 
 export function* userPost() {
-    const payload = yield take(USERS.ADD_USER);
-    yield fork(handleUserPost, payload)
+    yield takeEvery(USERS.ADD_USER, handleUserPost);
+}
+
+export function* userPut() {
+    yield takeEvery(USERS.UPDATE_USER, handleUserPut);
 }

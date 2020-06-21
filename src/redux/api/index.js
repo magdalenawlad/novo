@@ -43,11 +43,28 @@ export const get = (url, query, token) => {
     return req.then(handleSuccess).catch(handleError);
 };
 
-export const put = (url, query, token) => {
-    // todo payload
+export const post = (url, body, token) => {
+    const req = axios
+        .post(
+            encodeURI(url), {
+                ...body
+            },
+            token && {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+    return req.then(handleSuccess).catch(handleError);
+};
+
+export const put = (url, body, token) => {
     const req = axios
         .put(
-            encodeURI(url + (query || "")),
+            encodeURI(url), {
+                ...body
+            },
             token && {
                 headers: {
                     Authorization: `Bearer ${token}`

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         width: "max-content",
         maxWidth: "80%",
         padding: 14,
-        margin: "8% auto",
+        margin: "70px auto",
         left: 0,
         right: 0,
         borderRadius: 5,

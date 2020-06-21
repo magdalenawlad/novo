@@ -14,14 +14,25 @@ const setError = error => ({
     payload: error
 });
 
-const addUser = id => ({
+const addUser = user =>  ({
     type: USERS.ADD_USER,
-    id
+    user
 });
 
-const setUser = user => ({
-    type: USERS.SET_USER,
+const updateUser = (userId, user) => ({
+    type: USERS.UPDATE_USER,
+    userId,
     user
+});
+
+const setUpdatedUser = payload => ({
+    type: USERS.SET_UPDATED_USER,
+    payload
 })
 
-export { loadUsers, setError, setUsers, addUser, setUser };
+const setAddedUser = payload => ({
+    type: USERS.SET_ADDED_USER,
+    payload
+})
+
+export { loadUsers, setError, setUsers, addUser, updateUser, setUpdatedUser, setAddedUser };

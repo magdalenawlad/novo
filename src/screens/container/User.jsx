@@ -12,20 +12,21 @@ import {
     validate,
     isShallowEqual
 } from "./helpers";
-import { addUser } from "../../redux/actions/usersActions";
+import { addUser, updateUser } from "../../redux/actions/usersActions";
 import { createAlert } from "../../redux/actions/alertActions";
 
 const SUBMISSION_PENDING_MESSAGE = "Thank you, your submission is pending and will appear after validation.";
+const NEW_USER_DETAILS_LABEL = "New user details";
 
 const User = ({ history, match: { params: { userId }} }) => {
     const dispatch = useDispatch();
     const goToUserList = useCallback(() => history.push(""), [history])
+    const [data, setData] = useState(initialData);
     const handleSubmit = useCallback(() => {
         goToUserList();
-        dispatch(addUser(userId));
+        dispatch(!userId ? addUser(data) : updateUser(userId, data));
         dispatch(createAlert({ text: SUBMISSION_PENDING_MESSAGE }))
-    }, [goToUserList, dispatch, userId]);
-    const [data, setData] = useState(initialData);
+    }, [goToUserList, dispatch, userId, data]);
     const users = useSelector(state => state.users.data);
     const goBack = useCallback(() => history.goBack(), [history]);
     const [errors, setErrors] = useState({});
@@ -42,9 +43,11 @@ const User = ({ history, match: { params: { userId }} }) => {
             [name]: value
         });
     }, [errors, data]);
-    const currentUserData = useMemo(() => {
-        return userId ? users.find(({ id }) => Number(id) === Number(userId)) : {}
-    }, [userId, users]);
+    const currentUserData = useMemo(() => (userId ?
+        users.find(({ id }) => Number(id) === Number(userId)) : {}), [userId, users]);
+    const header = useMemo(() => userId && currentUserData ?
+        `${currentUserData.first_name} ${currentUserData.last_name}` :
+        NEW_USER_DETAILS_LABEL, [userId, currentUserData]);
     const isCurrentUserEdited = useMemo(() =>
         !(userId && isShallowEqual(currentUserData, data)), [userId, currentUserData, data]);
     const isFormValid = useMemo(() => {
@@ -60,7 +63,7 @@ const User = ({ history, match: { params: { userId }} }) => {
     return (
         <Layout maxWidth="xs">
             <Box maxWidth={500}>
-                <Header allowReturn label="New user details" />
+                <Header allowReturn label={header} />
                 <Box pl={3} my={2}>
                     {userId && <Typography
                         variant="subtitle2" color="textSecondary">{`ID: ${userId}`}
