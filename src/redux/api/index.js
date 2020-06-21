@@ -59,9 +59,9 @@ export const post = (url, body, token) => {
     return req.then(handleSuccess).catch(handleError);
 };
 
-export const put = (url, body, token) => {
+export const patch = (url, body, token) => {
     const req = axios
-        .put(
+        .patch(
             encodeURI(url), {
                 ...body
             },

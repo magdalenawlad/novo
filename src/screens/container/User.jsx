@@ -22,11 +22,6 @@ const User = ({ history, match: { params: { userId }} }) => {
     const dispatch = useDispatch();
     const goToUserList = useCallback(() => history.push(""), [history])
     const [data, setData] = useState(initialData);
-    const handleSubmit = useCallback(() => {
-        goToUserList();
-        dispatch(!userId ? addUser(data) : updateUser(userId, data));
-        dispatch(createAlert({ text: SUBMISSION_PENDING_MESSAGE }))
-    }, [goToUserList, dispatch, userId, data]);
     const users = useSelector(state => state.users.data);
     const goBack = useCallback(() => history.goBack(), [history]);
     const [errors, setErrors] = useState({});
@@ -45,6 +40,16 @@ const User = ({ history, match: { params: { userId }} }) => {
     }, [errors, data]);
     const currentUserData = useMemo(() => (userId ?
         users.find(({ id }) => Number(id) === Number(userId)) : {}), [userId, users]);
+    const handleSubmit = useCallback(() => {
+        goToUserList();
+        dispatch(createAlert({ text: SUBMISSION_PENDING_MESSAGE }))
+        if (userId) {
+            const diff = Object.keys(currentUserData).reduce((acc, key) => currentUserData[key] !== data[key] ?
+                { ...acc, [key]: data[key] } : acc, {});
+            return dispatch(updateUser(userId, { id: userId, ...diff }));
+        }
+        dispatch(addUser(data));
+    }, [currentUserData, goToUserList, dispatch, userId, data]);
     const header = useMemo(() => userId && currentUserData ?
         `${currentUserData.first_name} ${currentUserData.last_name}` :
         NEW_USER_DETAILS_LABEL, [userId, currentUserData]);

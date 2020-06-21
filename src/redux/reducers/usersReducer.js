@@ -10,7 +10,7 @@ const usersReducer = (state = { data: [] }, action) => {
     case USERS.SET_UPDATED_USER:
         return {
             ...state,
-            data: state.data.map((user) => (user.id === action.payload.data.id ?
+            data: state.data.map((user) => (Number(user.id) === Number(action.payload.data.id) ?
                 ({ ...user, ...action.payload.data }) : user)
             )
         }

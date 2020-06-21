@@ -22,9 +22,9 @@ export function* handleUserPost({ user }) {
     }
 }
 
-export function* handleUserPut({ userId, user }) {
+export function* handleUserPatch({ userId, user }) {
     try {
-        const response = yield call(Api.put, `https://reqres.in/api/users/${userId}`, { ...user });
+        const response = yield call(Api.patch, `https://reqres.in/api/users/${userId}`, { ...user });
         yield put(setUpdatedUser(response));
     } catch (error) {
         yield put(setError(error.toString()));
@@ -40,6 +40,6 @@ export function* userPost() {
     yield takeEvery(USERS.ADD_USER, handleUserPost);
 }
 
-export function* userPut() {
-    yield takeEvery(USERS.UPDATE_USER, handleUserPut);
+export function* userPatch() {
+    yield takeEvery(USERS.UPDATE_USER, handleUserPatch);
 }
